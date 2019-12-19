@@ -1,2 +1,4 @@
 # 2019GSM_FESTIVAL
-node express vue mysql raspberrypi 
+GSM 페스티벌 상처가희망 팀 레포지토리
+## 설명
+(의빈이가 추가하겠지)
