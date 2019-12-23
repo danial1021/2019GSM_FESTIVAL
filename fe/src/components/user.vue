@@ -7,7 +7,7 @@
     <v-card-text>
       <div>이름: {{user.name}}</div>
       <div>권한: {{user.lv}}</div>
-      <div>나이: {{user.age}}</div>
+      <div>나이: {{user.age}}</div> 
       <div>로그인 횟수: {{user.inCnt}}</div>
     </v-card-text>
     <v-card-actions>

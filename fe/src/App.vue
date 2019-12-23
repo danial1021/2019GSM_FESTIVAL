@@ -142,23 +142,21 @@ export default {
           ]
         },
         {
-          icon: 'chat',
-          title: '끄적끄적',
+          icon: 'done',
+          title: '1학년',
           subItems: [
-            {
-              icon: 'home',
-              title: '아무나',
-              to: {
-                path: '/board/아무나'
-              }
-            },
-            {
-              icon: 'clear',
-              title: '지호',
-              to: {
-                path: '/board/지호'
-              }
-            }
+          ]
+        },
+        {
+          icon: 'done_all',
+          title: '2학년',
+          subItems: [
+          ]
+        },
+        {
+          icon: 'done_outline',
+          title: '3학년',
+          subItems: [
           ]
         },
         {
@@ -221,22 +219,6 @@ export default {
             }
           ]
         }
-
-        // ,
-        // {
-        //   icon: 'home',
-        //   title: '홈aaa',
-        //   to: {
-        //     path: '/home'
-        //   }
-        // },
-        // {
-        //   icon: 'face',
-        //   title: 'header',
-        //   to: {
-        //     path: '/header'
-        //   }
-        // }
       ],
       title: this.$apiRootPath
     }
@@ -267,6 +249,18 @@ export default {
         .then(({ data }) => {
           data.ds.forEach(v => {
             this.items[1].subItems.push({
+              title: v.name,
+              to: {
+                path: `/board/${v.name}`
+              }
+            })
+            this.items[2].subItems.push({
+              title: v.name,
+              to: {
+                path: `/board/${v.name}`
+              }
+            })
+            this.items[3].subItems.push({
               title: v.name,
               to: {
                 path: `/board/${v.name}`
