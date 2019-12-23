@@ -142,6 +142,18 @@ export default {
           ]
         },
         {
+          icon: 'search',
+          title: '한눈에 관리',
+          subItems: [
+            {
+              title: '한눈에 보기',
+              to: {
+                path: '/see'
+              }
+            }
+          ]
+        },
+        {
           icon: 'done',
           title: '1학년',
           subItems: [
@@ -157,6 +169,30 @@ export default {
           icon: 'done_outline',
           title: '3학년',
           subItems: [
+          ]
+        },
+        {
+          icon: 'directions_walk',
+          title: '이동 관리',
+          subItems: [
+            {
+              title: '이동 보기',
+              to: {
+                path: '/move'
+              }
+            }
+          ]
+        },
+        {
+          icon: 'directions_run',
+          title: '복귀 관리',
+          subItems: [
+            {
+              title: '복귀 현황',
+              to: {
+                path: '/return'
+              }
+            }
           ]
         },
         {
@@ -248,19 +284,7 @@ export default {
       this.$axios.get('/board/list')
         .then(({ data }) => {
           data.ds.forEach(v => {
-            this.items[1].subItems.push({
-              title: v.name,
-              to: {
-                path: `/board/${v.name}`
-              }
-            })
             this.items[2].subItems.push({
-              title: v.name,
-              to: {
-                path: `/board/${v.name}`
-              }
-            })
-            this.items[3].subItems.push({
               title: v.name,
               to: {
                 path: `/board/${v.name}`

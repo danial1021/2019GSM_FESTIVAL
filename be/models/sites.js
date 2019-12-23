@@ -3,8 +3,8 @@ const cfg = require('../../config')
 
 mongoose.set('useCreateIndex', true)
 const siteSchema = new mongoose.Schema({
-  title: { type: String, default: 'NEMV', index: true },
-  copyright: { type: String, default: '© 2018 nemv' },
+  title: { type: String, default: 'ESCAPE IS HOPE', index: true },
+  copyright: { type: String, default: '© 2019 heart is hope' },
   dark: { type: Boolean, default: false }
 })
 

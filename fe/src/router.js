@@ -140,6 +140,21 @@ export default new Router({
       path: '*',
       name: 'e404',
       component: () => import('./views/e404')
+    },
+    {
+      path: '/see',
+      name: '한눈에 관리',
+      component: () => import('./views/see')
+    },
+    {
+      path: '/move',
+      name: '이동 관리',
+      component: () => import('./views/move')
+    },
+    {
+      path: '/return',
+      name: '복귀 관리',
+      component: () => import('./views/return')
     }
   ]
 })
