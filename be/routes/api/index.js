@@ -1,6 +1,5 @@
-var express = require('express');
-var createError = require('http-errors');
-var router = express.Router();
+const router = require('express').Router()
+const createError = require('http-errors')
 const jwt = require('jsonwebtoken')
 const moment = require('moment')
 const cfg = require('../../../config')
@@ -8,6 +7,7 @@ const cfg = require('../../../config')
 router.use('/sign', require('./sign'))
 router.use('/register', require('./register'))
 router.use('/site', require('./site'))
+router.use('/board', require('./board'))
 
 const verifyToken = (t) => {
   return new Promise((resolve, reject) => {
@@ -21,16 +21,16 @@ const verifyToken = (t) => {
   })
 }
 
-const signToken = (id, lv, name, rmb) => {
+const signToken = (_id, id, lv, name, exp) => {
   return new Promise((resolve, reject) => {
     const o = {
       issuer: cfg.jwt.issuer,
       subject: cfg.jwt.subject,
       expiresIn: cfg.jwt.expiresIn, // 3분
-      algorithm: cfg.jwt.algorithm
+      algorithm: cfg.jwt.algorithm,
+      expiresIn: exp
     }
-    if (rmb) o.expiresIn = cfg.jwt.expiresInRemember // 6일
-    jwt.sign({ id, lv, name }, cfg.jwt.secretKey, o, (err, token) => {
+    jwt.sign({ _id, id, lv, name }, cfg.jwt.secretKey, o, (err, token) => {
       if (err) reject(err)
       resolve(token)
     })
@@ -43,9 +43,10 @@ const getToken = async(t) => {
   const diff = moment(vt.exp * 1000).diff(moment(), 'seconds')
   // return vt
   console.log(diff)
-  if (diff > (vt.exp - vt.iat) / cfg.jwt.expiresInDiv) return { user: vt, token: null }
+  const expSec = (vt.exp - vt.iat)
+  if (diff > expSec / cfg.jwt.expiresInDiv) return { user: vt, token: null }
 
-  const nt = await signToken(vt.id, vt.lv, vt.name, vt.rmb)
+  const nt = await signToken(vt._id, vt.id, vt.lv, vt.name, expSec)
   vt = await verifyToken(nt)
   return { user: vt, token: nt }
 }
@@ -58,16 +59,14 @@ router.all('*', function(req, res, next) {
       req.token = v.token
       next()
     })
-    .catch(e => res.send({ success: false, msg: e.message }))
+    // .catch(e => res.send({ success: false, msg: e.message }))
+    .catch(e => next(createError(401, e.message)))
 })
 
 router.use('/page', require('./page'))
+router.use('/article', require('./article'))
 router.use('/manage', require('./manage'))
 
-// router.use('/test', require('./test'))
+router.all('*', require('./notFound'))
 
-router.all('*', function(req, res, next) {
-  next(createError(404, '그런 api 없어'));
-});
-
-module.exports = router;
+module.exports = router

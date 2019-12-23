@@ -37,7 +37,6 @@ app.use(function(err, req, res, next) {
 });
 
 const mongoose = require('mongoose')
-const User = require('./models/users')
 
 // console.log(`${process.env.NODE_ENV} started!`)
 
@@ -51,6 +50,3 @@ mongoose.connect(cfg.dbUrl, { useNewUrlParser: true }, (err) => {
 
 
 module.exports = app;
-
-var jwt = require('jsonwebtoken');
-const key = '베리베리어려운키'
