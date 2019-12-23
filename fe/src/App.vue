@@ -284,7 +284,7 @@ export default {
       this.$axios.get('/board/list')
         .then(({ data }) => {
           data.ds.forEach(v => {
-            this.items[2].subItems.push({
+            this.items[3].subItems.push({
               title: v.name,
               to: {
                 path: `/board/${v.name}`

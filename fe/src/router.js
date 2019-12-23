@@ -149,12 +149,20 @@ export default new Router({
     {
       path: '/move',
       name: '이동 관리',
-      component: () => import('./views/move')
+      component: () => import('./views/move'),
+      beforeEnter: pageCheck
     },
     {
       path: '/return',
       name: '복귀 관리',
-      component: () => import('./views/return')
+      component: () => import('./views/return'),
+      beforeEnter: pageCheck
+    },
+    {
+      path: '/user',
+      name: 'user',
+      component: () => import('./views/user'),
+      beforeEnter: pageCheck
     }
   ]
 })
