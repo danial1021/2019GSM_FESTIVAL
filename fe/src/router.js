@@ -142,11 +142,6 @@ export default new Router({
       component: () => import('./views/e404')
     },
     {
-      path: '/see',
-      name: '한눈에 관리',
-      component: () => import('./views/see')
-    },
-    {
       path: '/move',
       name: '이동 관리',
       component: () => import('./views/move'),
@@ -163,6 +158,26 @@ export default new Router({
       name: 'user',
       component: () => import('./views/user'),
       beforeEnter: pageCheck
+    },
+    {
+      path: '/floor/1floor',
+      name: '1floor',
+      component: () => import('./views/floor/1floor')
+    },
+    {
+      path: '/floor/2floor',
+      name: '2floor',
+      component: () => import('./views/floor/2floor')
+    },
+    {
+      path: '/floor/3floor',
+      name: '3floor',
+      component: () => import('./views/floor/3floor')
+    },
+    {
+      path: '/floor/4floor',
+      name: '4floor',
+      component: () => import('./views/floor/4floor')
     }
   ]
 })

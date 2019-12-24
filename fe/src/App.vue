@@ -88,9 +88,14 @@
                 <v-list-tile-title>회원가입</v-list-tile-title>
               </v-list-tile>
             </template>
-            <v-list-tile v-else @click="signOut">
-              <v-list-tile-title>로그아웃</v-list-tile-title>
-            </v-list-tile>
+            <template v-else>
+              <v-list-tile  @click="$router.push('/user')">
+                <v-list-tile-title>사용자 정보</v-list-tile-title>
+              </v-list-tile>
+              <v-list-tile  @click="signOut">
+                <v-list-tile-title>로그아웃</v-list-tile-title>
+              </v-list-tile>
+            </template>
           </v-list>
         </v-menu>
       </v-toolbar-items>
@@ -143,12 +148,30 @@ export default {
         },
         {
           icon: 'search',
-          title: '한눈에 관리',
+          title: '한 눈에 관리',
           subItems: [
             {
-              title: '한눈에 보기',
+              title: '1층',
               to: {
-                path: '/see'
+                path: '/floor/1floor'
+              }
+            },
+            {
+              title: '2층',
+              to: {
+                path: '/floor/2floor'
+              }
+            },
+            {
+              title: '3층',
+              to: {
+                path: '/floor/3floor'
+              }
+            },
+            {
+              title: '4층',
+              to: {
+                path: '/floor/4floor'
               }
             }
           ]
