@@ -10,15 +10,27 @@ export default new Vuex.Store({
       act: false,
       msg: '',
       color: 'error'
+    },
+    user: {
+      name: '유저',
+      img: 'https://randomuser.me/api/portraits/men/85.jpg',
+      id: ''
     }
   },
-  mutations: {
-    getToken (state) {
+  mutations: { // token 을 받을 때 user 을 같이 넘김
+    getToken (state, user) {
       state.token = localStorage.getItem('token')
+      // console.log(user)
+      state.user = user
     },
-    delToken (state) {
+    delToken (state, user) {
       localStorage.removeItem('token')
       state.token = null
+      state.user = {
+        name: '유저',
+        img: 'https://randomuser.me/api/portraits/men/85.jpg',
+        id: ''
+      }
     },
     pop (state, d) {
       state.sb.msg = d.msg

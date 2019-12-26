@@ -10,7 +10,7 @@
             <img-upload/>
           </v-card-text>
           <v-card-actions>
-            <!-- <v-btn @click="upload">전송</v-btn> -->
+            <v-btn @click="$router.push('/')">메인으로 돌아가기</v-btn>
           </v-card-actions>
         </v-card>
       </v-flex>
