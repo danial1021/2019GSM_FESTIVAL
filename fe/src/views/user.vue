@@ -5,11 +5,12 @@
         <v-card class="elevation-12">
           <v-card-title>사용 프로필 수정</v-card-title>
           <v-card-text>
-            <input id="bin" type="file">
-            <img :src="img"/>
+            <!-- <input id="bin" type="file">
+            <img :src="img"/> -->
+            <img-upload/>
           </v-card-text>
           <v-card-actions>
-            <v-btn @click="upload">전송</v-btn>
+            <!-- <v-btn @click="upload">전송</v-btn> -->
           </v-card-actions>
         </v-card>
       </v-flex>
@@ -18,7 +19,10 @@
 </template>
 
 <script>
+import imgUpload from '@/components/imgUpload'
+
 export default {
+  components: { imgUpload },
   data: () => ({
     form: {
       name: 'xx'

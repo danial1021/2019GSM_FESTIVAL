@@ -3,6 +3,7 @@ const crypto = require('crypto')
 const cfg = require('../../config')
 
 mongoose.set('useCreateIndex', true)
+mongoose.set('useFindAndModify', false)
 const userSchema = new mongoose.Schema({
   name: { type: String, default: '' },
   age: { type: Number, default: 1 },
@@ -11,7 +12,7 @@ const userSchema = new mongoose.Schema({
   lv: { type: Number, default: 2 }, //add
   inCnt: { type: Number, default: 0 }, //add
   retry: { type: Number, default: 0 },
-  // img: {type: String, default: ''}
+  img: {type: String, default: ''}
 })
 
 const User = mongoose.model('User', userSchema)
