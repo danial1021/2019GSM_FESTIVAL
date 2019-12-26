@@ -5,10 +5,16 @@ import './plugins/vuetify'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import 'tui-editor/dist/tui-editor.css'
+import 'tui-editor/dist/tui-editor-contents.css'
+import 'codemirror/lib/codemirror.css'
+import { Editor, Viewer } from '@toast-ui/vue-editor'
 
 Vue.config.productionTip = false
 
 Vue.use(VeeValidate)
+Vue.component('editor', Editor)
+Vue.component('viewer', Viewer)
 
 new Vue({
   router,

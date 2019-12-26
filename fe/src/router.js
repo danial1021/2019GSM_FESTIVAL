@@ -64,8 +64,7 @@ export default new Router({
     {
       path: '/',
       name: 'dashboard',
-      component: () => import('./views/dashboard'),
-      beforeEnter: pageCheck
+      component: () => import('./views/dashboard')
     },
     {
       path: '/board/:name',
@@ -121,11 +120,6 @@ export default new Router({
       component: () => import('./views/manage/boards'),
       beforeEnter: pageCheck
     },
-    // {
-    //   path: '/block/:msg',
-    //   name: '차단',
-    //   component: () => import('./views/block')
-    // },
     {
       path: '/sign',
       name: '로그인',

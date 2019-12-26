@@ -5,7 +5,7 @@
         <v-card>
           <v-card-title class="headline">
             <v-tooltip bottom>
-              <span slot="activator">{{board.name}}</span>
+              <span slot="activator">{{board.title}}</span>
               <span>{{board.rmk}}</span>
             </v-tooltip>
             <v-spacer></v-spacer>
@@ -58,14 +58,15 @@
     </v-layout>
 
     <v-dialog v-model="dialog" persistent max-width="500px" :fullscreen="$vuetify.breakpoint.xs">
-      <v-card v-if="!dlMode">
+      <v-card v-if="!dlMode" light>
         <v-card-title>
           <span class="headline">제목: {{selArticle.title}}</span>
         </v-card-title>
         <v-divider></v-divider>
         <v-card-text>
           <p>내용</p>
-          {{selArticle.content}}
+          <!-- {{selArticle.content}} -->
+          <viewer :value="selArticle.content"/>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -83,7 +84,7 @@
           </v-card-text>
         </v-card-text>
       </v-card>
-      <v-card v-else>
+      <v-card light v-else>
         <v-card-title>
           <span class="headline">글 {{(dlMode === 1) ? '작성' : '수정'}}</span>
         </v-card-title>
@@ -100,12 +101,13 @@
                 ></v-text-field>
               </v-flex>
               <v-flex xs12>
-                <v-textarea
+                <!-- <v-textarea
                   label="내용"
                   persistent-hint
                   required
                   v-model="form.content"
-                ></v-textarea>
+                ></v-textarea> -->
+                <editor v-model="form.content"/>
               </v-flex>
             </v-layout>
           </v-container>
@@ -127,6 +129,7 @@ export default {
       limits: [5, 6, 7, 11],
       board: {
         name: '로딩중...',
+        title: '로딩중...',
         rmk: '무엇?'
       },
       articles: [],

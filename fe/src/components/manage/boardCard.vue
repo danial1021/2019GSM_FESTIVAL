@@ -6,6 +6,7 @@
       </v-card-title>
       <v-divider light></v-divider>
       <v-card-text>
+        <div>제목: {{board.title}}</div>
         <div>권한: {{board.lv}}</div>
         <div>설명: {{board.rmk}}</div>
       </v-card-text>
@@ -22,12 +23,20 @@
       </v-card-title>
       <v-card-text>
         <v-form>
-        <v-text-field
-          label="게시판 이름"
-          :hint="form.name ? '' : '야구모임'"
+          <v-text-field
+          label="게시판 경로"
+          :hint="form.name ? '' : '경로로 사용하니 영어로 써주세요'"
           persistent-hint
           required
           v-model="form.name"
+        ></v-text-field>
+
+        <v-text-field
+          label="게시판 제목"
+          :hint="form.title ? '' : '야구모임'"
+          persistent-hint
+          required
+          v-model="form.title"
         ></v-text-field>
 
         <v-text-field
@@ -81,6 +90,7 @@ export default {
       lvs: [0, 1, 2, 3],
       form: {
         name: '',
+        title: '',
         lv: 0,
         rmk: ''
       },
@@ -92,18 +102,20 @@ export default {
       this.edit = true
       this.form = {
         name: b.name,
+        title: b.title,
         lv: b.lv,
         rmk: b.rmk
       }
     },
     mod (board) {
-      if (board.name === this.form.name && board.rmk === this.form.rmk && board.lv === this.form.lv) {
+      if (board.name === this.form.name && board.title === this.form.title && board.rmk === this.form.rmk && board.lv === this.form.lv) {
         return this.$store.commit('pop', { msg: '변경한 것이 없습니다.', color: 'warning' })
       }
       this.$axios.put(`manage/board/${board._id}`, this.form)
         .then((r) => {
           if (!r.data.success) throw new Error(r.data.msg)
           board.name = this.form.name
+          board.title = this.form.title
           board.rmk = this.form.rmk
           board.lv = this.form.lv
           this.edit = false

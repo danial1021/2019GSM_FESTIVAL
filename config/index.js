@@ -6,7 +6,7 @@ module.exports = {
       name: '관리자'
     },
     jwt: {
-      secretKey: '아주 어려운 토큰 발급용 키',
+      secretKey: 'gsm',
       issuer: 'xxx.com',
       subject: 'user-token',
       algorithm: 'HS256',    

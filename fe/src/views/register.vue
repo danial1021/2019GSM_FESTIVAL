@@ -43,7 +43,7 @@
                 v-model="agree"
                 :error-messages="errors.collect('agree')"
                 value="1"
-                label="약관동의: 암호화도 안되어 있는 사이트인데 정말 가입하겠습니까?"
+                label="약관동의: 실제 사용중인 아이디로 절대 가입하지 마시기 바랍니다"
                 data-vv-name="agree"
                 type="checkbox"
                 required
@@ -73,12 +73,10 @@
 
 <script>
 import ko from 'vee-validate/dist/locale/ko'
-
 export default {
   $_veeValidate: {
     validator: 'new'
   },
-
   data: () => ({
     form: {
       id: '',
@@ -112,11 +110,9 @@ export default {
       }
     }
   }),
-
   mounted () {
     this.$validator.localize('ko', this.dictionary)
   },
-
   methods: {
     submit () {
       this.$validator.validateAll()
