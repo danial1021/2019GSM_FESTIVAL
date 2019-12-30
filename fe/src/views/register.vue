@@ -38,12 +38,56 @@
                 required
               ></v-text-field>
 
+              <v-layout row wrap>
+                <v-flex xs3 sm3 d-flex>
+                  <v-select
+                    :items="items1"
+                    label="학년"
+                    required
+                  ></v-select>
+                </v-flex>
+                &nbsp;&nbsp;&nbsp;
+                <v-flex xs3 sm3 d-flex>
+                  <v-select
+                    :items="items2"
+                    label="반"
+                    required
+                  ></v-select>
+                </v-flex>
+                &nbsp;&nbsp;&nbsp;
+                <v-flex xs3 sm3 d-flex>
+                  <v-select
+                    :items="items3"
+                    label="번호"
+                    required
+                  ></v-select>
+                </v-flex>
+              </v-layout>
+
+              <v-layout row wrap>
+                <v-flex xs12 sm3>
+                  <v-checkbox
+                    v-model="mode"
+                    label="학생"
+                    value="multi-line"
+                  ></v-checkbox>
+                </v-flex>
+
+                <v-flex xs12 sm3>
+                  <v-checkbox
+                    v-model="mode"
+                    label="선생님"
+                    value="multi-line"
+                  ></v-checkbox>
+                </v-flex>
+              </v-layout>
+
               <v-checkbox
                 v-validate="'required'"
                 v-model="agree"
                 :error-messages="errors.collect('agree')"
                 value="1"
-                label="약관동의: 실제 사용중인 아이디로 절대 가입하지 마시기 바랍니다"
+                label="약관동의: 실제 사용중인 아이디로 가입하지 마시기 바랍니다"
                 data-vv-name="agree"
                 type="checkbox"
                 required
@@ -99,16 +143,11 @@ export default {
         // custom attributes
       },
       custom: {
-        // name: {
-        //   required: () => 'Name can not be empty',
-        //   max: 'The name field may not be greater than 10 characters'
-        //   // custom messages
-        // },
-        // select: {
-        //   required: 'Select field is required'
-        // }
       }
-    }
+    },
+    items1: ['1학년', '2학년', '3학년'],
+    items2: ['1반', '2반', '3반', '4반'],
+    items3: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21']
   }),
   mounted () {
     this.$validator.localize('ko', this.dictionary)

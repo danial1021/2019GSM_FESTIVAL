@@ -156,22 +156,26 @@ export default new Router({
     {
       path: '/floor/1floor',
       name: '1floor',
-      component: () => import('./views/floor/1floor')
+      component: () => import('./views/floor/1floor'),
+      beforeEnter: pageCheck
     },
     {
       path: '/floor/2floor',
       name: '2floor',
-      component: () => import('./views/floor/2floor')
+      component: () => import('./views/floor/2floor'),
+      beforeEnter: pageCheck
     },
     {
       path: '/floor/3floor',
       name: '3floor',
-      component: () => import('./views/floor/3floor')
+      component: () => import('./views/floor/3floor'),
+      beforeEnter: pageCheck
     },
     {
       path: '/floor/4floor',
       name: '4floor',
-      component: () => import('./views/floor/4floor')
+      component: () => import('./views/floor/4floor'),
+      beforeEnter: pageCheck
     }
   ]
 })

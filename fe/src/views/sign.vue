@@ -13,7 +13,7 @@
               <v-text-field prepend-icon="lock" v-model="form.pwd" label="비밀번호" type="password"></v-text-field>
               <v-checkbox
                 v-model="form.remember"
-                label="암호 기억하기(최대 7일간 보관 됩니다.)"
+                label="암호 기억하기(최대 3시간 유지됩니다.)"
               ></v-checkbox>
             </v-form>
           </v-card-text>
