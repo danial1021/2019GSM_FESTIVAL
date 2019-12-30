@@ -40,8 +40,8 @@
               <v-layout row wrap v-if="form.radios!='teacher'">
                 <v-flex xs3 sm3 d-flex>
                   <v-select
-                    v-model="form.items1"
-                    :items="items1"
+                    v-model="form.grade"
+                    :items="grade"
                     label="학년"
                     required
                   ></v-select>
@@ -49,8 +49,8 @@
                 &nbsp;&nbsp;&nbsp;
                 <v-flex xs3 sm3 d-flex>
                   <v-select
-                    v-model="form.items2"
-                    :items="items2"
+                    v-model="form.class"
+                    :items="class1"
                     label="반"
                     required
                   ></v-select>
@@ -58,8 +58,8 @@
                 &nbsp;&nbsp;&nbsp;
                 <v-flex xs3 sm3 d-flex>
                   <v-select
-                  v-model="form.items3"
-                    :items="items3"
+                  v-model="form.num"
+                    :items="num"
                     label="번호"
                     required
                   ></v-select>
@@ -113,9 +113,10 @@ export default {
       id: '',
       name: '',
       pwd: '',
-      items1: '',
-      items2: '',
-      items3: '',
+      grade: '',
+      class: '',
+      num: '',
+      lv: '',
       radios: ''
     },
     sb: {
@@ -131,18 +132,18 @@ export default {
         pwd: '비밀번호',
         name: '이름',
         agree: '약관동의',
-        items1: '학년',
-        items2: '반',
-        items3: '번호',
+        grade: '학년',
+        class: '반',
+        num: '번호',
         radios: 'radios'
         // custom attributes
       },
       custom: {
       }
     },
-    items1: ['1학년', '2학년', '3학년'],
-    items2: ['1반', '2반', '3반', '4반'],
-    items3: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21']
+    grade: ['1학년', '2학년', '3학년'],
+    class1: ['1반', '2반', '3반', '4반'],
+    num: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21']
   }),
   mounted () {
     this.$validator.localize('ko', this.dictionary)
@@ -153,9 +154,15 @@ export default {
         .then(r => {
           if (!r) throw new Error('모두 기입해주세요')
           if (this.form.radios === 'teacher') {
-            delete this.form.items1
-            delete this.form.items2
-            delete this.form.items3
+            delete this.form.grade
+            delete this.form.class
+            delete this.form.num
+            this.form.lv = 1
+          } else {
+            this.form.grade = this.form.grade.slice(0, 1)
+            this.form.class = this.form.class.slice(0, 1)
+            this.form.num = this.form.num.slice(0, 1)
+            this.form.lv = 2
           }
           return this.$axios.post('register', this.form)
         })
@@ -177,10 +184,10 @@ export default {
       this.form.id = ''
       this.form.pwd = ''
       this.form.name = ''
-      this.from.items1 = ''
-      this.from.items2 = ''
-      this.from.items3 = ''
-      this.from.radios = ''
+      this.form.grade = ''
+      this.form.class = ''
+      this.form.num = ''
+      this.form.radios = ''
       this.agree = null
       this.$validator.reset()
     }
