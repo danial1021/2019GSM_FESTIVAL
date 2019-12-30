@@ -37,10 +37,10 @@
                 data-vv-name="name"
                 required
               ></v-text-field>
-
-              <v-layout row wrap>
+              <v-layout row wrap v-if="form.radios!='teacher'">
                 <v-flex xs3 sm3 d-flex>
                   <v-select
+                    v-model="form.items1"
                     :items="items1"
                     label="학년"
                     required
@@ -49,6 +49,7 @@
                 &nbsp;&nbsp;&nbsp;
                 <v-flex xs3 sm3 d-flex>
                   <v-select
+                    v-model="form.items2"
                     :items="items2"
                     label="반"
                     required
@@ -57,31 +58,17 @@
                 &nbsp;&nbsp;&nbsp;
                 <v-flex xs3 sm3 d-flex>
                   <v-select
+                  v-model="form.items3"
                     :items="items3"
                     label="번호"
                     required
                   ></v-select>
                 </v-flex>
               </v-layout>
-
-              <v-layout row wrap>
-                <v-flex xs12 sm3>
-                  <v-checkbox
-                    v-model="mode"
-                    label="학생"
-                    value="multi-line"
-                  ></v-checkbox>
-                </v-flex>
-
-                <v-flex xs12 sm3>
-                  <v-checkbox
-                    v-model="mode"
-                    label="선생님"
-                    value="multi-line"
-                  ></v-checkbox>
-                </v-flex>
-              </v-layout>
-
+              <v-radio-group v-model="form.radios" :mandatory="false" row>
+                <v-radio label="학생" value="student"></v-radio>
+                <v-radio label="선생님" value="teacher"></v-radio>
+              </v-radio-group>
               <v-checkbox
                 v-validate="'required'"
                 v-model="agree"
@@ -125,7 +112,11 @@ export default {
     form: {
       id: '',
       name: '',
-      pwd: ''
+      pwd: '',
+      items1: '',
+      items2: '',
+      items3: '',
+      radios: ''
     },
     sb: {
       act: false,
@@ -139,7 +130,11 @@ export default {
         id: '아이디',
         pwd: '비밀번호',
         name: '이름',
-        agree: '약관동의'
+        agree: '약관동의',
+        items1: '학년',
+        items2: '반',
+        items3: '번호',
+        radios: 'radios'
         // custom attributes
       },
       custom: {
@@ -147,7 +142,8 @@ export default {
     },
     items1: ['1학년', '2학년', '3학년'],
     items2: ['1반', '2반', '3반', '4반'],
-    items3: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21']
+    items3: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21'],
+    radios: 'student',
   }),
   mounted () {
     this.$validator.localize('ko', this.dictionary)
@@ -157,6 +153,11 @@ export default {
       this.$validator.validateAll()
         .then(r => {
           if (!r) throw new Error('모두 기입해주세요')
+          if(this.form.radios=="teacher"){
+            delete this.form.items1
+            delete this.form.items2
+            delete this.form.items3
+          }
           return this.$axios.post('register', this.form)
         })
         .then(r => {
