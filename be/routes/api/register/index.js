@@ -5,6 +5,7 @@ const User = require('../../../models/users')
 
 router.post('/', (req, res) => {
   const u = req.body
+  console.log(u)
   if (!u.id) throw createError(400, '아이디가 없습니다')
   if (!u.pwd) throw createError(400, '비밀번호가 없습니다')
   if (!u.name) throw createError(400, '이름이 없습니다.')

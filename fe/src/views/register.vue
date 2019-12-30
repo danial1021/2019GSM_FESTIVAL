@@ -142,8 +142,7 @@ export default {
     },
     items1: ['1학년', '2학년', '3학년'],
     items2: ['1반', '2반', '3반', '4반'],
-    items3: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21'],
-    radios: 'student',
+    items3: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21']
   }),
   mounted () {
     this.$validator.localize('ko', this.dictionary)
@@ -153,7 +152,7 @@ export default {
       this.$validator.validateAll()
         .then(r => {
           if (!r) throw new Error('모두 기입해주세요')
-          if(this.form.radios=="teacher"){
+          if (this.form.radios === 'teacher') {
             delete this.form.items1
             delete this.form.items2
             delete this.form.items3
@@ -178,6 +177,10 @@ export default {
       this.form.id = ''
       this.form.pwd = ''
       this.form.name = ''
+      this.from.items1 = ''
+      this.from.items2 = ''
+      this.from.items3 = ''
+      this.from.radios = ''
       this.agree = null
       this.$validator.reset()
     }
