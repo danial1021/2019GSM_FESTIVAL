@@ -30,7 +30,7 @@
             <template slot="items" slot-scope="props">
               <td :class="headers[0].class">{{ id2date(props.item._id)}}</td>
               <td :class="headers[1].class"><a @click="read(props.item)"> {{ props.item.title }}</a></td>
-              <td :class="headers[2].class">{{ props.item._user ? props.item._user.id : '손님' }}</td>
+              <td :class="headers[2].class">{{ props.item._user ? props.item._user.name : '손님' }}</td>
               <td :class="headers[3].class">{{ props.item.cnt.view }}</td>
               <td :class="headers[4].class">{{ props.item.cnt.like }}</td>
             </template>

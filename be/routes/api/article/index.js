@@ -19,11 +19,11 @@ router.get('/list/:_board', (req, res, next) => {
   let total = 0
 
   Article.countDocuments(f)
-    .where('title').regex(search)
+    .where('name').regex(search)
     .then(r => {
       total = r
       return Article.find(f)
-        .where('title').regex(search)
+        .where('name').regex(search)
         .sort(s)
         .skip(skip)
         .limit(limit)
@@ -31,6 +31,7 @@ router.get('/list/:_board', (req, res, next) => {
         .populate('_user', '-pwd')
     })
     .then(rs => {
+      console.log(rs)
       res.send({ success: true, t: total, ds: rs, token: req.token })
     })
     .catch(e => {
@@ -67,7 +68,8 @@ router.post('/:_board', (req, res, next) => {
         content,
         _board,
         ip: '1.1.1.1',//req.ip,
-        _user: null
+        _user: null,
+        name: req.user.name
       }
       if (req.user._id) atc._user = req.user._id
       return Article.create(atc)
