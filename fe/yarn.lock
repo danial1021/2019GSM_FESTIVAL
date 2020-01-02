@@ -4919,6 +4919,11 @@ markdown-it@^9.0.0:
     mdurl "^1.0.1"
     uc.micro "^1.0.5"
 
+material-design-icons-iconfont@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/material-design-icons-iconfont/-/material-design-icons-iconfont-5.0.1.tgz#371875ed7fe9c8c520bc7123c3231feeab731c31"
+  integrity sha512-Xg6rIdGrfySTqiTZ6d+nQbcFepS6R4uKbJP0oAqyeZXJY/bX6mZDnOmmUJusqLXfhIwirs0c++a6JpqVa8RFvA==
+
 math-random@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/math-random/-/math-random-1.0.1.tgz#8b3aac588b8a66e4975e3cdea67f7bb329601fac"
@@ -6382,9 +6387,9 @@ range-parser@^1.0.3, range-parser@~1.2.0:
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.0.tgz#f49be6b487894ddc40dcc94a322f611092e00d5e"
   integrity sha1-9JvmtIeJTdxA3MlKMi9hEJLgDV4=
 
-"raphael@git+https://github.com/nhn/raphael.git#2.2.0-c":
+"raphael@https://github.com/nhn/raphael.git#2.2.0-c":
   version "2.2.0-c"
-  resolved "git+https://github.com/nhn/raphael.git#78a6ed3ec269f33b6457b0ec66f8c3d1f2ed70e0"
+  resolved "https://github.com/nhn/raphael.git#78a6ed3ec269f33b6457b0ec66f8c3d1f2ed70e0"
   dependencies:
     eve "git://github.com/adobe-webplatform/eve.git#eef80ed"
 
@@ -7898,10 +7903,10 @@ vue@^2.5.17:
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.17.tgz#0f8789ad718be68ca1872629832ed533589c6ada"
   integrity sha512-mFbcWoDIJi0w0Za4emyLiW72Jae0yjANHbCVquMKijcavBGypqlF7zHRgMa5k4sesdv7hv2rB4JPdZfR+TPfhQ==
 
-vuetify@^1.5.0:
-  version "1.5.21"
-  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.5.21.tgz#e62b4f3b23fc9db39abf340cc9abea3e3859a051"
-  integrity sha512-x0F2mNoWMXVA2ntrmvfjJFU2elaq2WK1tD9wOBu447xUHdZqswziFD82pNtmWRy3TjEXsLj/ZNO8e5dZig+Iqg==
+vuetify@^1.5.22:
+  version "1.5.22"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.5.22.tgz#18417ac675c9085946b37cdbbfe9fc010c5cec27"
+  integrity sha512-WtfB6fe1+Fsf56nR6LGSh7YgUXp/iF0k9Igtf1XnODjV8OOD8A63ACVD5aG34FhUZS0CgqkcXjyG6EYuz/LFYA==
 
 vuex@^3.0.1:
   version "3.0.1"

@@ -32,7 +32,7 @@
               <td :class="headers[1].class"><a @click="read(props.item)"> {{ props.item.title }}</a></td>
               <td :class="headers[2].class">{{ props.item._user ? props.item._user.id : '손님' }}</td>
               <td :class="headers[3].class">{{ props.item.cnt.view }}</td>
-              <td :class="headers[4].class">{{ props.item.cnt.like }}</td>
+              <td :class="headers[4].class">{{ props.item.cnt.check }}</td>
             </template>
 
             <template slot="actions-prepend">
@@ -144,7 +144,7 @@ export default {
         { text: '제목', value: 'title', sortable: true, align: 'left' },
         { text: '글쓴이', value: '_user', sortable: false },
         { text: '조회수', value: 'cnt.view', sortable: true },
-        { text: '추천', value: 'cnt.like', sortable: true }
+        { text: '확인여부', value: 'cnt.check', sortable: true }
       ],
       loading: false,
       pagination: {},

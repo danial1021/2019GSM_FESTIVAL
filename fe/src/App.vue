@@ -184,10 +184,10 @@ export default {
         },
         {
           icon: 'directions_walk',
-          title: '이동 관리',
+          title: '이동 신청관리',
           subItems: [
             {
-              title: '이동 보기',
+              title: '이동 양식',
               to: {
                 path: '/move'
               }
