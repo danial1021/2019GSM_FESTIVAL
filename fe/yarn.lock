@@ -5016,14 +5016,6 @@ markdown-it@^9.0.0:
     mdurl "^1.0.1"
     uc.micro "^1.0.5"
 
-markdown-js@0.0.x:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/markdown-js/-/markdown-js-0.0.4.tgz#60b23eb91524446bc3357f14294452d9ec383bb6"
-  integrity sha512-/GDVAINnE6JXDE18JXjRXFmkE66k9rWIUOUvZPFsOlSQNQEcJEI/tiKsOMSBbTOerQV3V0/jiuVjZ3vxYO8nnQ==
-  dependencies:
-    markdown-it "8.4.1"
-    test ">=0.0.5"
-
 material-design-icons-iconfont@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/material-design-icons-iconfont/-/material-design-icons-iconfont-5.0.1.tgz#371875ed7fe9c8c520bc7123c3231feeab731c31"
@@ -8111,10 +8103,10 @@ vue@^2.5.17:
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.17.tgz#0f8789ad718be68ca1872629832ed533589c6ada"
   integrity sha512-mFbcWoDIJi0w0Za4emyLiW72Jae0yjANHbCVquMKijcavBGypqlF7zHRgMa5k4sesdv7hv2rB4JPdZfR+TPfhQ==
 
-vuetify@^1.5.0:
-  version "1.5.21"
-  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.5.21.tgz#e62b4f3b23fc9db39abf340cc9abea3e3859a051"
-  integrity sha512-x0F2mNoWMXVA2ntrmvfjJFU2elaq2WK1tD9wOBu447xUHdZqswziFD82pNtmWRy3TjEXsLj/ZNO8e5dZig+Iqg==
+vuetify@^1.5.22:
+  version "1.5.22"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.5.22.tgz#18417ac675c9085946b37cdbbfe9fc010c5cec27"
+  integrity sha512-WtfB6fe1+Fsf56nR6LGSh7YgUXp/iF0k9Igtf1XnODjV8OOD8A63ACVD5aG34FhUZS0CgqkcXjyG6EYuz/LFYA==
 
 vuex@^3.0.1:
   version "3.0.1"
