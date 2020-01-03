@@ -32,7 +32,7 @@
               <td :class="headers[1].class"><a @click="read(props.item)"> {{ props.item.title }}</a></td>
               <td :class="headers[2].class">{{ props.item._user ? props.item._user.name : '손님' }}</td>
               <td :class="headers[3].class">{{ props.item.cnt.view }}</td>
-              <td :class="headers[4].class">{{ props.item.cnt.check }}</td>
+              <td :class="headers[4].class">{{ props.item.chk }}</td>
             </template>
 
             <template slot="actions-prepend">
@@ -70,8 +70,14 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
+          <span v-if="selArticle.chk != ''">
           <v-btn color="warning darken-1" flat @click.native="modDialog()">수정</v-btn>
           <v-btn color="error darken-1" flat @click.native="ca=true">삭제</v-btn>
+          </span>
+          <span v-else>
+          <v-btn color="warning darken-1" flat @click.native="chkDialog1()">허가</v-btn>
+          <v-btn color="error darken-1" flat @click.native="chkDialog2()">거부</v-btn>
+          </span>
           <v-btn color="secondary darken-1" flat @click.native="dialog = false">닫기</v-btn>
         </v-card-actions>
         <v-card-text>
@@ -144,7 +150,7 @@ export default {
         { text: '제목', value: 'title', sortable: true, align: 'left' },
         { text: '글쓴이', value: '_user', sortable: false },
         { text: '조회수', value: 'cnt.view', sortable: true },
-        { text: '확인여부', value: 'cnt.check', sortable: true }
+        { text: '확인여부', value: 'chk', sortable: true }
       ],
       loading: false,
       pagination: {},
@@ -215,6 +221,34 @@ export default {
         title: this.selArticle.title,
         content: this.selArticle.content
       }
+    },
+    chkDialog1 () {
+      this.form = {
+        chk: '허가됨'
+      }
+      this.$axios.put(`article/${this.selArticle._id}`, this.form)
+        .then(({ data }) => {
+          this.dialog = false
+          if (!data.success) throw new Error(data.msg)
+          // this.list()
+        })
+        .catch((e) => {
+          if (!e.response) this.$store.commit('pop', { msg: e.message, color: 'warning' })
+        })
+    },
+    chkDialog2 () {
+      this.form = {
+        chk: '거부됨'
+      }
+      this.$axios.put(`article/${this.selArticle._id}`, this.form)
+        .then(({ data }) => {
+          this.dialog = false
+          if (!data.success) throw new Error(data.msg)
+          // this.list()
+        })
+        .catch((e) => {
+          if (!e.response) this.$store.commit('pop', { msg: e.message, color: 'warning' })
+        })
     },
     getBoard () {
       this.$axios.get(`board/read/${this.$route.params.name}`)
@@ -297,6 +331,7 @@ export default {
           if (!e.response) this.$store.commit('pop', { msg: e.message, color: 'warning' })
         })
     },
+
     del () {
       this.$axios.delete(`article/${this.selArticle._id}`)
         .then(({ data }) => {

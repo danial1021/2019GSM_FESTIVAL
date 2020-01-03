@@ -5,12 +5,11 @@ const articleSchema = new mongoose.Schema({
   title: { type: String, default: '', index: true },
   content: { type: String, default: '' },
   cnt: {
-    view: { type: Number, default: 0 },
-    like: { type: Number, default: 0 }
+    view: { type: Number, default: 0 }
   },
   ip: { type: String, default: '' },
   name: { type: String, default: '' },
-  chk : { type: String, default: 'X' },
+  chk : { type: String, default: '대기중' },
   _user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', index: true },
   _board: { type: mongoose.Schema.Types.ObjectId, ref: 'Board', index: true }
 })
