@@ -9,8 +9,8 @@ const articleSchema = new mongoose.Schema({
     like: { type: Number, default: 0 }
   },
   ip: { type: String, default: '' },
-  comments: [],
   name: { type: String, default: '' },
+  chk : { type: String, default: 'X' },
   _user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', index: true },
   _board: { type: mongoose.Schema.Types.ObjectId, ref: 'Board', index: true }
 })
