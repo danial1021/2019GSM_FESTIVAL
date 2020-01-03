@@ -38,7 +38,7 @@
       <v-btn color="primary" @click.native="e6 = 3">Continue</v-btn>
       <v-btn flat @click.native="e6 = 1">Backward</v-btn>
     </v-stepper-content>
-    <v-stepper-step :complete="e6 > 1" step="3">머무를 시간 정하기</v-stepper-step>
+    <v-stepper-step :complete="e6 > 3" step="3">머무를 시간 정하기</v-stepper-step>
     <v-stepper-content step="3">
       <v-card color="grey lighten-5" class="mb-5" height="100px" ref="form">
         <v-card-text>
