@@ -141,11 +141,7 @@ export default {
 
   methods: {
     submit () {
-      this.$validator.validateAll()
-        .then(r => {
-          if (!r) throw new Error('모두 기입해주세요')
-          else this.$axios.post('move', this.form)
-        })
+      this.$axios.post('move', this.form)
         .then(r => {
           if (!r.data.success) throw new Error(r.data.msg)
           this.$store.commit('pop', { msg: '신청이 완료 되었습니다', color: 'success' })

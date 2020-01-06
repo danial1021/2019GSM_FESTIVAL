@@ -1,21 +1,21 @@
 <template>
   <v-layout row>
-    <v-flex xs12 sm12 offset-sm0>
+    <v-flex xs11 sm12 offset-sm0>
       <v-card>
         <v-toolbar color="pink" dark>
-          <v-toolbar-side-icon></v-toolbar-side-icon>
-
-          <v-toolbar-title>Inbox</v-toolbar-title>
+          <v-btn icon>
+            <v-icon>assignment_ind</v-icon>
+          </v-btn>
+          <v-toolbar-title>외출 명단</v-toolbar-title>
 
           <v-spacer></v-spacer>
-
-          <v-btn icon>
-            <v-icon>search</v-icon>
-          </v-btn>
-
-          <v-btn icon>
-            <v-icon>check_circle</v-icon>
-          </v-btn>
+          <v-text-field
+            v-model="search"
+            append-icon="search"
+            label="Search"
+            single-line
+            hide-details
+          ></v-text-field>
         </v-toolbar>
 
         <v-list two-line>
