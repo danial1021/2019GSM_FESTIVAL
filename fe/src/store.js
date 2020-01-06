@@ -13,7 +13,7 @@ export default new Vuex.Store({
     },
     user: {
       name: '유저',
-      img: 'https://randomuser.me/api/portraits/men/85.jpg',
+      img: 'https://cdn.discordapp.com/attachments/645787220464369670/663586887595851780/bd1fd42b-06ed-48ef-b1b5-f0c680c6be82.jpg',
       id: ''
     }
   },
@@ -28,7 +28,7 @@ export default new Vuex.Store({
       state.token = null
       state.user = {
         name: '유저',
-        img: 'https://randomuser.me/api/portraits/men/85.jpg',
+        img: 'https://cdn.discordapp.com/attachments/645787220464369670/663586887595851780/bd1fd42b-06ed-48ef-b1b5-f0c680c6be82.jpg',
         id: ''
       }
     },

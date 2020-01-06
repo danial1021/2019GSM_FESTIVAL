@@ -10,10 +10,10 @@ const signToken = (_id, id, lv, name, rmb) => {
     const o = {
       issuer: cfg.jwt.issuer,
       subject: cfg.jwt.subject,
-      expiresIn: cfg.jwt.expiresIn, // 3분
+      expiresIn: cfg.jwt.expiresIn,
       algorithm: cfg.jwt.algorithm
     }
-    if (rmb) o.expiresIn = cfg.jwt.expiresInRemember // 6일
+    if (rmb) o.expiresIn = cfg.jwt.expiresInRemember
     jwt.sign({ _id, id, lv, name }, cfg.jwt.secretKey, o, (err, token) => {
       if (err) reject(err)
       resolve(token)

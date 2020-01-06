@@ -14,10 +14,10 @@
             <div>
               <div>이름: {{user.name}}</div>
               <div>권한: {{user.lv}}</div>
-              <div>나이: {{user.age}}</div>
-              <div>로그인 횟수: {{user.inCnt}}</div>
-              <div>식별자(_id): {{user._id}}</div>
-              <div>비밀번호: {{user.pwd}}</div>
+              <div>아이디(_id): {{user._id}}</div>
+              <div>학년: {{user.grade}}</div>
+              <div>반: {{user.class}}</div>
+              <div>번호: {{user.num}}</div>
             </div>
           </v-card-title>
           <v-divider light></v-divider>
@@ -51,14 +51,6 @@
                   label="권한"
                   required
                   v-model="userLv"
-                ></v-select>
-              </v-flex>
-              <v-flex xs12 sm6>
-                <v-select
-                  :items="userAges"
-                  label="나이"
-                  required
-                  v-model="userAge"
                 ></v-select>
               </v-flex>
             </v-layout>

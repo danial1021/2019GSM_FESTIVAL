@@ -13,9 +13,7 @@ const userSchema = new mongoose.Schema({
   class: { type: Number, default: ''},
   num: { type: Number, default: ''},
   lv: { type: Number, default: 2 }, //add
-  inCnt: { type: Number, default: 0 }, //add
-  retry: { type: Number, default: 0 },
-  img: {type: String, default: ''}
+  img: {type: String, default: 'https://cdn.discordapp.com/attachments/645787220464369670/663586887595851780/bd1fd42b-06ed-48ef-b1b5-f0c680c6be82.jpg'}
 })
 
 const User = mongoose.model('User', userSchema)
