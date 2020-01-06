@@ -5,7 +5,7 @@
       <small>사용자 이름 쓰기</small>
     </v-stepper-step>
     <v-stepper-content step="1">
-      <v-card color="grey lighten-5" class="mb-5" height="100px" ref="form">
+      <v-card color="grey lighten-5" class="mb-5" height="100px" ref="form" light>
         <v-card-text>
           <v-text-field
             v-model="form.name"
@@ -19,7 +19,7 @@
     </v-stepper-content>
     <v-stepper-step :complete="e6 > 2" step="2">이동할 장소 선택</v-stepper-step>
     <v-stepper-content step="2">
-      <v-card color="grey lighten-4" class="mb-5" height="100px" ref="form">
+      <v-card color="grey lighten-4" class="mb-5" height="100px" ref="form" light>
         <v-card-text>
           <v-autocomplete
             v-model="form.location"
@@ -35,7 +35,7 @@
     </v-stepper-content>
     <v-stepper-step :complete="e6 > 3" step="3">머무를 시간 정하기</v-stepper-step>
     <v-stepper-content step="3">
-      <v-card color="grey lighten-5" class="mb-5" height="150px" ref="form">
+      <v-card color="grey lighten-5" class="mb-5" height="150px" ref="form" light>
         <v-card-text>
           <v-layout row wrap>
             <v-flex xs11 sm5>
@@ -95,7 +95,7 @@
     </v-stepper-content>
     <v-stepper-step step="4">사유 작성</v-stepper-step>
     <v-stepper-content step="4">
-      <v-card color="grey lighten-4" class="mb-5" height="250px" ref="form">
+      <v-card color="grey lighten-4" class="mb-5" height="250px" ref="form" light>
         <v-card-text>
           <v-flex xs12>
             <v-text-field
