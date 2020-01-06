@@ -22,7 +22,7 @@
           <template v-for="(article, index) in articles">
             <v-list-tile
               :key="article"
-              @click="toggle(index)"
+              @click="read(article)"
             >
               <v-list-tile-content>
                 <v-list-tile-title>{{ article.name }}</v-list-tile-title>
@@ -50,6 +50,62 @@
         </v-list>
       </v-card>
     </v-flex>
+    <v-dialog v-model="dialog" persistent max-width="500px" :fullscreen="$vuetify.breakpoint.xs">
+      <v-card v-if="!dlMode" light>
+        <v-card-title>
+          <span class="headline">제목: {{selArticle.title}}</span>
+        </v-card-title>
+        <v-divider></v-divider>
+        <v-card-text>
+          <p>내용</p>
+          <!-- {{selArticle.content}} -->
+          <viewer :value="selArticle.content"/>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="warning darken-1" flat>수정</v-btn>
+          <v-btn color="error darken-1" flat>삭제</v-btn>
+          <v-btn color="secondary darken-1" flat @click.native="dialog = false">닫기</v-btn>
+        </v-card-actions>
+        <v-card-text>
+          <v-card-text v-if="ca">
+            <v-alert v-model="ca" type="warning">
+              <h4>정말 진행 하시겠습니까?</h4>
+              <v-btn color="error" @click="del()">확인</v-btn>
+              <v-btn color="secondary" @click="ca=false">취소</v-btn>
+            </v-alert>
+          </v-card-text>
+        </v-card-text>
+      </v-card>
+      <v-card light v-else>
+        <v-card-title>
+          <span class="headline">글 {{(dlMode === 1) ? '작성' : '수정'}}</span>
+        </v-card-title>
+        <v-divider></v-divider>
+        <v-card-text>
+          <v-container grid-list-md>
+            <v-layout wrap>
+              <v-flex xs12>
+                <v-text-field
+                  label="제목"
+                  persistent-hint
+                  required
+                  v-model="form.title"
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs12>
+                <editor v-model="form.content"/>
+              </v-flex>
+            </v-layout>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="green darken-1" flat @click="(dlMode === 1) ? add() : mod()">확인</v-btn>
+          <v-btn color="red darken-1" flat @click.native="dialog = false">취소</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-layout>
 </template>
 
@@ -57,11 +113,28 @@
 export default {
   data () {
     return {
-      selected: []
+      selected: [],
+      articles: {
+        name: '로딩중...',
+        title: '로딩중...',
+        content: '무엇?'
+      },
+      search: '',
+      ca: false,
+      dialog: false,
+      dlMode: 0,
+      selArticle: {},
+      timeout: null,
+      loading: false
     }
   },
   mounted () {
     this.list()
+  },
+  watch: {
+    'search' (m) {
+      this.delay()
+    }
   },
   methods: {
     toggle (index) {
@@ -76,8 +149,7 @@ export default {
     list () {
       if (this.loading) return
       this.loading = true
-
-      this.$axios.get(`return/list/`)
+      this.$axios.get(`return/list/${this.search}`)
         .then(({ data }) => {
           if (!data.success) throw new Error(data.msg)
           this.articles = data.ds
@@ -96,16 +168,20 @@ export default {
           if (!data.success) throw new Error(data.msg)
           this.dlMode = 0
           this.dialog = true
-          this.selArticle.content = data.d.content
-          this.selArticle.cnt.view = data.d.cnt.view
+          this.selArticle = data.d[0]
           this.loading = false
         })
         .catch((e) => {
           if (!e.response) this.$store.commit('pop', { msg: e.message, color: 'warning' })
           this.loading = false
         })
+    },
+    delay () {
+      clearTimeout(this.timeout)
+      this.timeout = setTimeout(() => {
+        this.list()
+      }, 1000)
     }
   }
-
 }
 </script>
