@@ -137,7 +137,7 @@ export default new Router({
     },
     {
       path: '/move',
-      name: '이동 관리',
+      name: '이동 신청관리',
       component: () => import('./views/move'),
       beforeEnter: pageCheck
     },

@@ -187,7 +187,7 @@ export default {
           title: '이동 신청관리',
           subItems: [
             {
-              title: '이동 양식',
+              title: '교내 이동 신청',
               to: {
                 path: '/move'
               }
@@ -295,7 +295,7 @@ export default {
       this.$axios.get('/board/list')
         .then(({ data }) => {
           data.ds.forEach(v => {
-            this.items[3].subItems.push({ //
+            this.items[3].subItems.push({
               title: v.title,
               to: {
                 path: `/board/${v.name}`

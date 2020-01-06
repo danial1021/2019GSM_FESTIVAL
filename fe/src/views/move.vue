@@ -101,6 +101,7 @@
             <v-text-field
               label="이동 사유를 작성해주세요"
               textarea
+              v-model="form.reason"
               :counter="1000"
               :rules="[(v) => v.length <= 1000 || 'Max 1000 characters']"
               full-width
@@ -123,6 +124,7 @@ export default {
     form: {
       location: '',
       name: '',
+      reason: '',
       time1: null,
       time2: null
     },
