@@ -19,21 +19,18 @@
         </v-toolbar>
 
         <v-list two-line>
-          <template v-for="(item, index) in items">
+          <template v-for="(article, index) in articles">
             <v-list-tile
-              :key="item.name"
-              avatar
-              ripple
+              :key="article"
               @click="toggle(index)"
             >
               <v-list-tile-content>
-                <v-list-tile-title>{{ item.name }}</v-list-tile-title>
-                <v-list-tile-sub-title class="text--primary">{{ item.title }}</v-list-tile-sub-title>
-                <v-list-tile-sub-title>{{ item.reason }}</v-list-tile-sub-title>
+                <v-list-tile-title>{{ article.name }}</v-list-tile-title>
+                <v-list-tile-sub-title class="text--primary">{{ article.title }}</v-list-tile-sub-title>
+                <v-list-tile-sub-title>{{ article.content }}</v-list-tile-sub-title>
               </v-list-tile-content>
 
               <v-list-tile-action>
-                <v-list-tile-action-text>{{ item.time }}</v-list-tile-action-text>
                 <v-icon
                   v-if="selected.indexOf(index) < 0"
                   color="grey lighten-1"
@@ -48,12 +45,7 @@
                   star
                 </v-icon>
               </v-list-tile-action>
-
             </v-list-tile>
-            <v-divider
-              v-if="index + 1 < items.length"
-              :key="index"
-            ></v-divider>
           </template>
         </v-list>
       </v-card>
@@ -65,47 +57,11 @@
 export default {
   data () {
     return {
-      selected: [2],
-      items: [
-        {
-          time: '15 min',
-          name: 'Ali Connors',
-          title: 'Brunch this weekend?',
-          reason: "I'll be in your neighborhood doing errands this weekend. Do you want to hang out?"
-        },
-        {
-          time: '15 min',
-          name: 'Ali Connors',
-          title: 'Brunch this weekend?',
-          reason: "I'll be in your neighborhood doing errands this weekend. Do you want to hang out?"
-        },
-        {
-          time: '15 min',
-          name: 'Ali Connors',
-          title: 'Brunch this weekend?',
-          reason: "I'll be in your neighborhood doing errands this weekend. Do you want to hang out?"
-        },
-        {
-          time: '15 min',
-          name: 'Ali Connors',
-          title: 'Brunch this weekend?',
-          reason: "I'll be in your neighborhood doing errands this weekend. Do you want to hang out?"
-        },
-        {
-          time: '15 min',
-          name: 'Ali Connors',
-          title: 'Brunch this weekend?',
-          reason: "I'll be in your neighborhood doing errands this weekend. Do you want to hang out?"
-        }
-      ],
-      params: {
-        search: '',
-        return_time: ''
-      }
+      selected: []
     }
   },
   mounted () {
-    this.getlist()
+    this.list()
   },
   methods: {
     toggle (index) {
@@ -117,31 +73,13 @@ export default {
         this.selected.push(index)
       }
     },
-    getlist () {
-      this.$axios.get(`board/read/${this.$route.params.name}`)
-        .then(({ data }) => {
-          if (!data.success) throw new Error(data.msg)
-          this.board = data.d
-          this.list()
-        })
-        .catch((e) => {
-          if (!e.response) this.$store.commit('pop', { msg: e.message, color: 'warning' })
-        })
-    },
     list () {
       if (this.loading) return
-      if (!this.board._id) return
       this.loading = true
-      this.params.draw += 1
-      this.params.skip = this.setSkip
-      this.params.limit = this.pagination.rowsPerPage
-      this.params.sort = this.setSort
-      this.params.order = this.setOrder
 
-      this.$axios.get(`article/list/${this.board._id}`, { params: this.params })
+      this.$axios.get(`return/list/`)
         .then(({ data }) => {
           if (!data.success) throw new Error(data.msg)
-          this.pagination.totalItems = data.t
           this.articles = data.ds
           this.loading = false
         })
@@ -153,7 +91,7 @@ export default {
     read (atc) {
       this.selArticle = atc
       this.loading = true
-      this.$axios.get(`article/read/${atc._id}`)
+      this.$axios.get(`return/read/${atc._id}`)
         .then(({ data }) => {
           if (!data.success) throw new Error(data.msg)
           this.dlMode = 0

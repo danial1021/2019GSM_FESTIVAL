@@ -31,7 +31,6 @@ router.get('/list/:_board', (req, res, next) => {
         .populate('_user', '-pwd')
     })
     .then(rs => {
-      console.log(rs)
       res.send({ success: true, t: total, ds: rs, token: req.token })
     })
     .catch(e => {
