@@ -54,7 +54,6 @@ router.all('*', function(req, res, next) {
   // 토큰 검사
   getToken(req.headers.authorization)
     .then((v) => {
-      console.log(v)
       req.user = v.user
       req.token = v.token
       next()
@@ -68,6 +67,7 @@ router.use('/article', require('./article'))
 router.use('/manage', require('./manage'))
 router.use('/user', require('./user'))
 router.use('/move', require('./move'))
+router.use('/return', require('./return'))
 
 router.all('*', require('./notFound'))
 
