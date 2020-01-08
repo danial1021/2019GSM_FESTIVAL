@@ -10,6 +10,7 @@ const articleSchema = new mongoose.Schema({
   ip: { type: String, default: '' },
   name: { type: String, default: '' },
   chk : { type: String, default: '대기중' },
+  ret : { type: String, default: '복귀 안함' },
   _user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', index: true },
   _board: { type: mongoose.Schema.Types.ObjectId, ref: 'Board', index: true }
 })

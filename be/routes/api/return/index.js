@@ -36,6 +36,25 @@ router.get('/read/:_id', (req, res, next) => {
     })
 })
 
+router.put('/:_id', (req, res, next) => {
+    if (!req.user._id) throw createError(403, '게시물 수정 권한이 없습니다')
+  const _id = req.params._id
+
+  Article.findById(_id)
+    .then(r => {
+      if (!r) throw new Error('게시물이 존재하지 않습니다')
+      if (!r._user) throw new Error('손님 게시물은 수정이 안됩니다')
+      if (r._user.toString() !== req.user._id) throw new Error('본인이 작성한 게시물이 아닙니다')
+      return Article.findByIdAndUpdate(_id, { $set: req.body}, { new: true })
+    })
+    .then(r => {
+      res.send({ success: true, d: r, token: req.token })
+    })
+    .catch(e => {
+      res.send({ success: false, msg: e.message })
+    })
+})
+
 
 
 module.exports = router;

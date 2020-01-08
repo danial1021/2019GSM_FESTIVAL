@@ -70,7 +70,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <span v-if="selArticle.chk != ''">
+          <span v-if="selArticle.chk != '' && lv != 1">
           <v-btn color="warning darken-1" flat @click.native="modDialog()">수정</v-btn>
           <v-btn color="error darken-1" flat @click.native="ca=true">삭제</v-btn>
           </span>
@@ -157,6 +157,7 @@ export default {
       dlMode: 0, // 0: read, 1: write, 2: modify
       selArticle: {},
       ca: false,
+      lv: 0,
       params: {
         draw: 0,
         search: '',
@@ -306,6 +307,8 @@ export default {
           this.dialog = true
           this.selArticle.content = data.d.content
           this.selArticle.cnt.view = data.d.cnt.view
+          this.lv = data.lv
+          console.log(this.lv)
           this.loading = false
         })
         .catch((e) => {

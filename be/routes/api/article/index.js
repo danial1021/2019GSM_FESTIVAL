@@ -45,7 +45,7 @@ router.get('/read/:_id', (req, res, next) => {
     .select('content cnt.view')
     .then(r => {
       if (!r) throw new Error('잘못된 게시판입니다')
-      res.send({ success: true, d: r, token: req.token })
+      res.send({ success: true, d: r, token: req.token, lv: req.user.lv })
     })
     .catch(e => {
       res.send({ success: false, msg: e.message })
@@ -91,7 +91,7 @@ router.put('/:_id', (req, res, next) => {
     .then(r => {
       if (!r) throw new Error('게시물이 존재하지 않습니다')
       if (!r._user) throw new Error('손님 게시물은 수정이 안됩니다')
-      if (r._user.toString() !== req.user._id) throw new Error('본인이 작성한 게시물이 아닙니다')
+      if (r._user.toString() !== req.user._id && req.user.lv != 1) throw new Error('본인이 작성한 게시물이 아닙니다')
       return Article.findByIdAndUpdate(_id, { $set: req.body}, { new: true })
     })
     .then(r => {
