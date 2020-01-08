@@ -292,6 +292,7 @@ export default {
           this.pagination.totalItems = data.t
           this.articles = data.ds
           this.loading = false
+          this.lv = data.lv
         })
         .catch((e) => {
           if (!e.response) this.$store.commit('pop', { msg: e.message, color: 'warning' })
