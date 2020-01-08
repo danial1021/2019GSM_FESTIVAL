@@ -7,7 +7,7 @@ const fs = require('fs')
 const User = require('../../../models/users')
 
 router.post('/', multer({ dest: 'public/' }).single('bin') ,(req, res, next) => {
-
+  
   if (!req.user._id) throw createError(401, 'xxx')
   sharp(req.file.path).resize({
       width: 200,

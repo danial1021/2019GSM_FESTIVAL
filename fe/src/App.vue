@@ -207,36 +207,6 @@ export default {
           ]
         },
         {
-          icon: 'pan_tool',
-          title: '레벨테스트',
-          subItems: [
-            {
-              title: '손님용 페이지',
-              to: {
-                path: '/test/lv3'
-              }
-            },
-            {
-              title: '일반유저용 페이지',
-              to: {
-                path: '/test/lv2'
-              }
-            },
-            {
-              title: '슈퍼유저용 페이지',
-              to: {
-                path: '/test/lv1'
-              }
-            },
-            {
-              title: '관리자용 페이지',
-              to: {
-                path: '/test/lv0'
-              }
-            }
-          ]
-        },
-        {
           icon: 'settings',
           title: '관리메뉴',
           subItems: [

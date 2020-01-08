@@ -44,6 +44,7 @@
         </v-card>
       </v-flex>
       <v-btn
+        v-if="lv == 2"
         floating
         fixed
         dark
