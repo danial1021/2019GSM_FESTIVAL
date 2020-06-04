@@ -1,0 +1,5 @@
+routes에 xx.js 생성 후 
+app.js에서 라우터들이 추가됨 (등록)
+
+public 파일이 있으면 public에 있는 index.js로 실행 즉-> route의 순서 얘기를 의미함
+public -> fe dist

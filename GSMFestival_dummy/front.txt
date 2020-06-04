@@ -1,0 +1,5 @@
+entry point -> src main.js
+public -> index.html은 App.vue가 화면 전체 담당
+HOME.vue 가 안쪽을 담당
+
+ 여기서 app.vue에서 home.vue는 어떻게 끌어와지냐 -> router.js
